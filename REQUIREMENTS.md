@@ -27,6 +27,7 @@ Borang utama wajib (dan pilihan) mempunyai medan-medan berikut:
 ## 3. Sistem Paparan Pelanggan (View Ticket)
 *   Pelanggan memasukkan **Tracking ID** untuk membaca kemas kini dan membalas aduan.
 *   Pelanggan boleh melihat Sejarah Balasan (Thread) daripada pihak admin/kakitangan mengikut tarikh.
+*   **[Tambahan] Knowledge Base / FAQ:** Paparan artikel bantuan atau Soalan Lazim sebelum borang dihantar untuk mengurangkan pertanyaan berulang.
 
 ## 4. Pengurusan Tiket (Admin & Staff Dashboard)
 *   **Log Masuk Ejen:** Kakitangan (Staff/Admin) mesti log masuk untuk membalas aduan (Boleh diintegrasi dengan sistem Single Sign-On UTeM atau login berasingan).
@@ -34,7 +35,13 @@ Borang utama wajib (dan pilihan) mempunyai medan-medan berikut:
 *   **Status Aduan:** Aduan boleh ditetapkan status (Cth: Terbuka, Dalam Tindakan, Selesai, Ditutup).
 *   **Pematuhan SLA (Service Level Agreement):** Sistem boleh merekod/memantau sasaran balasan: "Pertanyaan: 3 hari bekerja", "Aduan: 14 hari bekerja".
 
-## 5. Peningkatan Moden (Modern Upgrades)
+## 5. Peningkatan Pengurusan Lanjutan (Advanced Management Capabilities)
+*   **[Tambahan] Sistem Notifikasi E-mel:** Penghantaran e-mel automatik apabila tiket dihantar (berserta Tracking ID), status diubah, atau apabila komen baharu ditambah.
+*   **[Tambahan] Pelaporan & Statistik (Analytics):** Dashboard pintar untuk penjanaan laporan (Eksport ke Excel/PDF). Pemantauan prestasi jabatan, kelajuan membalas tiket, dan pematuhan SLA.
+*   **[Tambahan] Jejak Audit (Audit Trail):** Rakaman log bagi setiap tindakan (cth: siapa yang menukar status tiket, tarikh/masa ditukar) untuk ketelusan dan siasatan masa depan.
+*   **[Tambahan] Peringkat Akses (Role-Based Access Control - RBAC):** Pembahagian kuasa yang jelas antara Super Admin, Ketua Jabatan, dan Staf Sokongan.
+
+## 6. Peningkatan Moden (Modern Upgrades)
 *   **Responsif (Mobile-Friendly):** Antaramuka wajib berfungsi dengan cantik dan mudah pada peranti pintar / telefon bimbit.
 *   **Keselamatan Terkini:** Perlindungan moden Laravel (CSRF, XSS).
 *   **Pilihan Dwi-Bahasa:** Menyokong Bahasa Melayu dan Bahasa Inggeris (seperti pilihan "Go" pada sistem asal).
