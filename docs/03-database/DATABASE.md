@@ -11,7 +11,7 @@ Digunakan untuk menyimpan maklumat kakitangan (Admin / Staf) yang boleh log masu
 | `name` | String | Nama penuh kakitangan |
 | `email` | String | E-mel rasmi (Unik) |
 | `password` | String | Kata laluan (Hashed) |
-| `role` | Enum | Peranan: `super_admin`, `admin_jabatan`, `staf` |
+| `role` | - | Peranan diuruskan oleh Spatie Laravel Permission, bukan lajur enum |
 | `department_id` | FK, BigInt | Merujuk kepada jabatan kakitangan (Boleh Null) |
 | `timestamps` | Datetime | `created_at` & `updated_at` |
 
@@ -41,8 +41,11 @@ Menyimpan semua rekod aduan yang dihantar.
 | `subject` | String | Tajuk Aduan |
 | `message` | Text | Butiran Aduan |
 | `status` | Enum | `baru`, `terbuka`, `dalam_tindakan`, `selesai`, `ditutup` |
-| `assigned_to` | FK, BigInt | Merujuk kepada `users.id` (Staf yang ditugaskan) |
+| `assigned_to_user_id` | FK, BigInt | Merujuk kepada `users.id` (Staf yang ditugaskan) |
 | `resolved_at` | Datetime | Tarikh & Masa aduan selesai (Untuk kiraan SLA) |
+| `first_responded_at` | Datetime | Masa respons pertama staf |
+| `due_at` | Datetime | Tarikh akhir SLA yang dikira berdasarkan waktu bekerja |
+| `closed_at` | Datetime | Tarikh tiket ditutup |
 | `timestamps` | Datetime | `created_at` (Tarikh Mula) & `updated_at` |
 
 ## 4. Jadual: `ticket_replies` (Balasan / Thread)
@@ -78,3 +81,17 @@ Untuk merekod setiap tindakan penting di dalam sistem.
 | `action` | String | Jenis tindakan (Cth: Tukar Status, Padam Tiket) |
 | `description` | Text | Butiran tindakan (Cth: Status ditukar dari Baru kepada Selesai) |
 | `timestamps` | Datetime | Waktu kejadian direkod |
+
+## 7. Jadual Sokongan Tambahan
+*   `ticket_status_histories`: `ticket_id`, `from_status`, `to_status`, `changed_by`, `reason`, `created_at`.
+*   `ticket_categories`: `name`, `is_active`, `default_sla_days` dan hubungan kepada jabatan jika diperlukan.
+*   `sla_calendars` / `public_holidays`: konfigurasi waktu bekerja dan cuti umum.
+*   `ticket_satisfactions`: `ticket_id`, `rating`, `comment`, `created_at`.
+
+## 8. Integriti dan Keselamatan Data
+*   `tracking_id` mesti mempunyai unique index; e-mel pengguna mesti mempunyai index yang sesuai.
+*   Foreign key mesti menetapkan tindakan `cascade`, `restrict` atau `nullOnDelete` secara eksplisit.
+*   Lampiran menyimpan metadata saiz, MIME type dan checksum jika diperlukan; kandungan fail kekal di private storage.
+*   Token akses pelanggan mesti disimpan dalam bentuk hashed dan mempunyai tarikh luput.
+*   Nama status dan priority hendaklah diuruskan melalui PHP Enum atau lookup table supaya perubahan nilai tidak memerlukan perubahan database Enum.
+*   Pertimbangkan `softDeletes` untuk tiket, pengguna dan jabatan jika rekod perlu dipulihkan.

@@ -45,3 +45,24 @@ Borang utama wajib (dan pilihan) mempunyai medan-medan berikut:
 *   **Responsif (Mobile-Friendly):** Antaramuka wajib berfungsi dengan cantik dan mudah pada peranti pintar / telefon bimbit.
 *   **Keselamatan Terkini:** Perlindungan moden Laravel (CSRF, XSS).
 *   **Pilihan Dwi-Bahasa:** Menyokong Bahasa Melayu dan Bahasa Inggeris (seperti pilihan "Go" pada sistem asal).
+
+## 7. Keperluan Keselamatan dan Operasi Tambahan
+*   Penghantaran tiket, semakan tiket dan permintaan Tracking ID mesti dilindungi dengan rate limiting.
+*   Pelanggan mesti mengesahkan e-mel atau menggunakan token akses yang selamat sebelum melihat atau membalas tiket.
+*   Lampiran mesti mempunyai had saiz dan jenis fail, disimpan secara private, serta disemak daripada fail berbahaya.
+*   Sistem mesti merekod masa respons pertama, tarikh tamat SLA dan sejarah perubahan status.
+*   SLA mesti menyokong waktu bekerja, cuti umum dan konfigurasi berbeza mengikut kategori atau keutamaan.
+*   Sistem mesti menyokong carian, penapisan, pagination dan tindakan pukal untuk pengurusan tiket.
+*   Selepas tiket ditutup, pelanggan boleh memberikan penilaian kepuasan ringkas.
+
+## 8. Keperluan Aksesibiliti dan Kualiti
+*   Antaramuka mesti boleh digunakan melalui keyboard, mempunyai label borang yang jelas dan mematuhi kontras warna yang baik.
+*   Semua fungsi utama mesti mempunyai ujian automatik dan dijalankan melalui CI.
+*   Sistem mesti menyediakan prosedur backup, pemulihan dan pemantauan kegagalan queue.
+
+## 9. Privasi dan Tadbir Urus Data
+*   Borang mesti memaparkan notis privasi dan tujuan pengumpulan data.
+*   Akses kepada data pelanggan mesti dihadkan mengikut peranan dan jabatan.
+*   Sistem mesti menyokong retention policy, anonymization dan pemadaman data tertakluk kepada keperluan rekod rasmi.
+*   Audit log mesti mempunyai tempoh retention dan akses yang terhad.
+*   Pengendalian data mesti mematuhi keperluan PDPA Malaysia dan polisi UTeM yang berkuat kuasa.

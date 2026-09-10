@@ -27,3 +27,24 @@ Sistem ini dibina menggunakan **TALL Stack**, sebuah ekosistem yang sangat popul
 ## 5. Pengujian (Testing Environment)
 *   Ujian diwajibkan untuk setiap modul penting.
 *   **Framework Ujian:** PHPUnit atau Pest (Berdasarkan ketetapan sedia ada Laravel).
+
+## 6. Prinsip Reka Bentuk Tambahan
+*   Gunakan queue untuk e-mel, notifikasi dan kerja berat supaya permintaan web kekal pantas.
+*   Simpan lampiran pada private storage dan hidangkan melalui endpoint yang mengesahkan kebenaran pengguna.
+*   Gunakan Laravel Policies/Gates bersama Spatie Permission untuk kawalan akses pada peringkat tindakan dan rekod.
+*   Gunakan Events/Listeners untuk audit log dan notifikasi supaya logik domain tidak terikat pada controller.
+*   Semua perubahan schema mesti dibuat melalui migration dan semua teks UI melalui localization.
+*   CI mesti menjalankan format check, ujian, pemeriksaan keselamatan dependency dan frontend build.
+
+## 7. Aliran Data Ringkas
+1. Pelanggan menghantar borang dan sistem mengesahkan CAPTCHA, rate limit, input serta lampiran.
+2. Sistem mencipta tiket, Tracking ID, audit log dan job notifikasi.
+3. Staf melihat hanya tiket yang dibenarkan oleh jabatan dan permission mereka.
+4. Perubahan status atau balasan direkodkan dalam thread, audit log dan sejarah status.
+5. Queue menghantar notifikasi; scheduler memeriksa SLA dan melaksanakan eskalasi.
+
+## 8. Keselamatan Operasi
+*   Akaun `super_admin` dan pentadbir mesti menyokong two-factor authentication (2FA).
+*   Sistem mesti menetapkan session timeout, login throttling dan security headers termasuk Content Security Policy.
+*   Secret production mesti diurus melalui secret manager atau mekanisme yang setara dan dirotasi secara berkala.
+*   Semua operasi penting hendaklah mempunyai request/correlation ID untuk memudahkan siasatan log.

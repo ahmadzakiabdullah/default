@@ -57,3 +57,18 @@ Untuk pelancaran secara manual atau melalui saluran CI/CD, langkah asas berikut 
 
 ## 3. Sandaran (Backup)
 *   Sistem pangkalan data dan folder `storage/app/public/` (lampiran tiket) wajib disandarkan (backup) secara harian oleh pasukan IT UTeM.
+
+## 4. Keselamatan dan Operasi Pengeluaran
+*   Gunakan HTTPS, secret manager atau permission fail yang sesuai; jangan commit `.env`.
+*   Tetapkan Supervisor untuk `queue:work` dan scheduler untuk tugas SLA/notifikasi.
+*   Sediakan endpoint health check, pemantauan error, penggunaan disk, queue dan masa respons.
+*   Backup mesti diuji melalui proses restore berkala; sasarkan RPO/RTO yang dipersetujui bersama UTeM.
+*   Untuk release, gunakan maintenance strategy yang selamat, jalankan migration dahulu dan sediakan rollback plan.
+
+## 5. CI/CD Minimum
+Pipeline mesti menjalankan `composer install`, pemeriksaan kod, `php artisan test`, `npm run build`, audit dependency dan deployment ke staging sebelum production.
+
+## 6. Monitoring dan Alert
+*   Pantau uptime, error rate, response time, queue failure, penggunaan disk dan database.
+*   Hantar alert kepada pasukan IT apabila queue gagal, SLA dilanggar, backup gagal atau disk hampir penuh.
+*   Sediakan health check yang tidak mendedahkan secret atau maklumat dalaman.
