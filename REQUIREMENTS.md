@@ -1,28 +1,40 @@
-# Keperluan Sistem (System Requirements) - Sistem Helpdesk
+# Keperluan Sistem (System Requirements) - Sistem Aduan UTeM
 
-Dokumen ini menyenaraikan ciri-ciri dan fungsi utama yang dirancang untuk Sistem Helpdesk Organisasi.
+Dokumen ini menyenaraikan ciri-ciri dan fungsi utama yang dirancang untuk menaik taraf **Sistem Aduan Dan Maklumbalas Pelanggan UTeM** (menggantikan sistem lama di `help.utem.edu.my`).
 
-## 1. Peranan Pengguna (User Roles)
-Sistem ini secara asasnya akan mempunyai sekurang-kurangnya dua peranan:
-*   **Pengguna Biasa / Kakitangan (User):** Boleh mencipta tiket aduan, melihat status tiket mereka sendiri, dan membalas komen pada tiket tersebut.
-*   **Admin / Ejen Sokongan (Admin/Agent):** Boleh melihat semua tiket, menukar status tiket, membalas tiket pengguna, dan menguruskan sistem.
+## 1. Aliran Utama (Flow of the System)
+Sistem ini menggunakan aliran **"Guest Ticketing"**, yang membolehkan warga UTeM dan orang awam menghantar aduan tanpa perlu mempunyai akaun log masuk, tetapi mengekalkan keselamatan melalui **Tracking ID**.
+*   **Hantar Aduan (Submit Ticket):** Borang am untuk semua pelanggan menghantar masalah/aduan.
+*   **Semak Aduan (View Ticket):** Pelanggan menyemak status balasan menggunakan gabungan **Tracking ID** (ID Jejak) dan/atau E-mel.
+*   **Lupa Tracking ID:** Pelanggan boleh meminta Tracking ID dihantar ke e-mel mereka.
 
-## 2. Pengurusan Tiket (Ticket Management)
-*   **Penciptaan Tiket:** Borang aduan yang memerlukan tajuk, deskripsi, dan kategori aduan (cth: IT, Fasiliti, HR). Boleh memuat naik lampiran/gambar (pilihan).
-*   **Status Tiket:** Setiap tiket mesti mempunyai status yang jelas. Contoh: `Baru` (New), `Sedang Diproses` (In Progress), `Selesai` (Resolved), `Ditutup` (Closed).
-*   **Keutamaan (Priority):** Tiket boleh ditandakan dengan tahap keutamaan (cth: Rendah, Sederhana, Tinggi, Kritikal).
-*   **Komen / Balasan:** Ruang perbincangan di dalam setiap tiket antara Pengguna dan Admin.
+## 2. Borang Hantar Aduan (Submit a Ticket)
+Borang utama wajib (dan pilihan) mempunyai medan-medan berikut:
+*   **Maklumat Pemohon:**
+    *   Nama (Wajib)
+    *   E-mel (Wajib)
+    *   Nombor Telefon (Wajib)
+    *   Alamat (Pilihan)
+*   **Maklumat Aduan:**
+    *   Kategori / Jabatan (Wajib - *Drop down menu*)
+    *   Keutamaan / Priority (Wajib - *Drop down menu*)
+    *   Subjek / Tajuk (Wajib)
+    *   Mesej / Butiran (Wajib)
+    *   Lampiran / Attachments (Pilihan - Boleh muat naik fail/gambar tertakluk pada had fail)
+*   **Keselamatan:**
+    *   SPAM Prevention (Captcha keselamatan bergambar / Google reCAPTCHA)
 
-## 3. Papan Pemuka (Dashboard)
-*   **Dashboard Pengguna:** Paparan ringkas jumlah tiket mereka mengikut status (cth: Berapa tiket yang sedang aktif, berapa yang selesai).
-*   **Dashboard Admin:** Paparan statistik keseluruhan (jumlah tiket tertunggak, tiket yang memerlukan perhatian segera).
+## 3. Sistem Paparan Pelanggan (View Ticket)
+*   Pelanggan memasukkan **Tracking ID** untuk membaca kemas kini dan membalas aduan.
+*   Pelanggan boleh melihat Sejarah Balasan (Thread) daripada pihak admin/kakitangan mengikut tarikh.
 
-## 4. Sistem Log Masuk & Keselamatan (Authentication)
-*   Pendaftaran (Registration) dan Log Masuk (Login) yang selamat.
-*   Pemulihan kata laluan (Password Reset).
+## 4. Pengurusan Tiket (Admin & Staff Dashboard)
+*   **Log Masuk Ejen:** Kakitangan (Staff/Admin) mesti log masuk untuk membalas aduan (Boleh diintegrasi dengan sistem Single Sign-On UTeM atau login berasingan).
+*   **Senarai Tugas:** Dashboard menyenaraikan aduan mengikut kategori/jabatan kakitangan tersebut.
+*   **Status Aduan:** Aduan boleh ditetapkan status (Cth: Terbuka, Dalam Tindakan, Selesai, Ditutup).
+*   **Pematuhan SLA (Service Level Agreement):** Sistem boleh merekod/memantau sasaran balasan: "Pertanyaan: 3 hari bekerja", "Aduan: 14 hari bekerja".
 
-## 5. Notifikasi (Cadangan Masa Hadapan)
-*   Notifikasi e-mel automatik apabila tiket baharu dicipta, atau apabila terdapat kemas kini status/komen baharu.
-
----
-*Nota: Keperluan ini adalah sebagai panduan awal dan boleh dikemaskini mengikut kehendak organisasi dari semasa ke semasa.*
+## 5. Peningkatan Moden (Modern Upgrades)
+*   **Responsif (Mobile-Friendly):** Antaramuka wajib berfungsi dengan cantik dan mudah pada peranti pintar / telefon bimbit.
+*   **Keselamatan Terkini:** Perlindungan moden Laravel (CSRF, XSS).
+*   **Pilihan Dwi-Bahasa:** Menyokong Bahasa Melayu dan Bahasa Inggeris (seperti pilihan "Go" pada sistem asal).
