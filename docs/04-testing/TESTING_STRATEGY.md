@@ -35,3 +35,20 @@ Semua pembangun (termasuk ejen AI) **diwajibkan** untuk:
 
 ## 4. Penunjuk Prestasi Ujian (Metrics)
 *   Sasaran *Code Coverage* minimum adalah 80% bagi kod logik perniagaan (Business Logic).
+
+## 5. Ujian Tambahan Wajib
+*   Ujian authorization memastikan staf tidak boleh mengakses tiket jabatan lain.
+*   Ujian rate limiting untuk submit, semakan tiket dan permintaan Tracking ID.
+*   Ujian upload memastikan fail tidak sah, terlalu besar atau berbahaya ditolak.
+*   Ujian SLA meliputi hujung minggu, cuti umum, timezone dan eskalasi.
+*   Ujian queue memastikan e-mel dan notifikasi dihantar melalui job yang betul.
+*   Ujian pemulihan backup dijalankan secara berkala dalam persekitaran staging.
+
+## 6. CI Quality Gate
+Pull request tidak boleh digabungkan jika gagal format check, ujian PHPUnit/Pest, coverage minimum, dependency audit atau frontend build.
+
+## 7. Kes ujian Privasi dan Keselamatan
+*   Pengguna tanpa permission tidak boleh melihat data atau lampiran tiket.
+*   Token pelanggan yang luput atau telah digunakan mesti ditolak.
+*   Data yang dianonymize tidak boleh mendedahkan nama, e-mel atau telefon asal.
+*   2FA, login throttling dan session timeout mesti diuji pada persekitaran staging.
