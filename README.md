@@ -11,4 +11,8 @@ Repositori ini mengandungi kod sumber untuk Sistem Helpdesk / Aduan, sebuah sist
 Sistem ini membolehkan kakitangan menghantar tiket aduan, dan membolehkan pihak admin/pasukan sokongan untuk mengurus, membalas, dan menjejak status aduan tersebut sehingga selesai.
 
 ## Dokumen Penting
-Sila rujuk fail `REQUIREMENTS.md` untuk melihat senarai ciri-ciri (features) terperinci dan keperluan sistem sebelum pembangunan dimulakan.
+Sila rujuk folder `docs/` untuk dokumentasi teknikal dan perancangan penuh sistem ini. Antara dokumen yang tersedia:
+- [Keperluan Sistem (REQUIREMENTS)](docs/01-product/REQUIREMENTS.md)
+- [Pelan Pembangunan (ROADMAP)](docs/01-product/ROADMAP.md)
+- [Seni Bina (ARCHITECTURE)](docs/02-architecture/ARCHITECTURE.md)
+- [Pangkalan Data (DATABASE)](docs/03-database/DATABASE.md)
